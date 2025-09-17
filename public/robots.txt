@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap (opcional, para cuando se tenga)
+# Sitemap: https://gutierrez-hnos.vercel.app/sitemap.xml
+
+# Específico para Gutierrez Hnos - Gestión Ganadera
+# Este es un sistema empresarial interno
