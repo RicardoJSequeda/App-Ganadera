@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8" />
+    
+    <!-- Favicon e iconos -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    
+    <!-- Metadatos básicos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gutierrez Hnos - Gestión Ganadera</title>
+    <meta name="description" content="Sistema de gestión ganadera para Gutierrez Hermanos. Control de animales, compras, ventas, sanidad y más." />
+    <meta name="keywords" content="ganadería, gestión, animales, compras, ventas, sanidad, rural" />
+    <meta name="author" content="Gutierrez Hermanos" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gutierrez-hnos.vercel.app/" />
+    <meta property="og:title" content="Gutierrez Hnos - Gestión Ganadera" />
+    <meta property="og:description" content="Sistema de gestión ganadera para control de animales, compras, ventas y sanidad." />
+    <meta property="og:image" content="/logo.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://gutierrez-hnos.vercel.app/" />
+    <meta property="twitter:title" content="Gutierrez Hnos - Gestión Ganadera" />
+    <meta property="twitter:description" content="Sistema de gestión ganadera para control de animales, compras, ventas y sanidad." />
+    <meta property="twitter:image" content="/logo.png" />
+    
+    <!-- PWA y tema -->
+    <meta name="theme-color" content="#26a69a" />
+    <meta name="background-color" content="#F5F2E7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Gutierrez Hnos" />
+    
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    
+    <!-- Iconos PWA -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/pwa-512x512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/pwa-512x512.png" />
+    
+    <!-- Preconnect para mejor rendimiento -->
+    <link rel="preconnect" href="https://dmrwdxevualztpbtybis.supabase.co" />
+    
+    <!-- Meta tags adicionales para PWA -->
+    <meta name="application-name" content="Gutierrez Hnos" />
+    <meta name="msapplication-TileColor" content="#26a69a" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/pwa-192x192.png" as="image" />
+    <link rel="preload" href="/pwa-512x512.png" as="image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
