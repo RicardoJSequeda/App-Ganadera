@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply h-full m-0 bg-rural-background font-sans text-rural-text antialiased;
+  }
+  
+  #root {
+    @apply h-full;
+  }
+
+  /* Scrollbar personalizado para toda la aplicación */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #67806D #F5F2E7;
+  }
+
+  /* Webkit scrollbar (Chrome, Safari, Edge) */
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #F5F2E7;
+    border-radius: 3px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #67806D;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #5A6F61;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: #F5F2E7;
+  }
+
+  /* Scrollbar para elementos más grandes (como tablas) */
+  .table-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .table-scroll::-webkit-scrollbar-track {
+    background: #F9E9D0;
+    border-radius: 4px;
+  }
+
+  .table-scroll::-webkit-scrollbar-thumb {
+    background: #67806D;
+    border-radius: 4px;
+  }
+
+  .table-scroll::-webkit-scrollbar-thumb:hover {
+    background: #5A6F61;
+  }
+
+  /* Círculos de color de caravana */
+  .color-caravana-circle {
+    min-width: 24px;
+    min-height: 24px;
+    flex-shrink: 0;
+  }
+}
