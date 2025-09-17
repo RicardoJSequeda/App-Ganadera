@@ -1,4 +1,4 @@
-# 🐄 Gutiérrez Hnos App - Gestión Ganadera
+# 🐄 Familia Mercado App - Gestión Ganadera
 
 Una aplicación web progresiva (PWA) para la gestión integral de ganado, diseñada específicamente para la empresa familiar Gutiérrez Hnos de San Martín, Chaco, Argentina.
 
@@ -37,15 +37,19 @@ Reemplazar el manejo empírico y en papel por un sistema moderno, simple, robust
    VITE_SUPABASE_ANON_KEY=tu-clave-anonima
    ```
 
-4. **Configurar base de datos**
-   
-   Ejecutar los scripts SQL en tu proyecto de Supabase:
-   ```bash
-   # En el orden indicado:
-   sql/notifications_table.sql
-   database/schema.sql
-   # Otros scripts según necesidad
-   ```
+4. **Configurar base de datos (Supabase)**
+  
+  Ejecuta los scripts en el panel SQL de tu proyecto Supabase, en este orden:
+  ```sql
+  -- 1) Creación de tablas, funciones, triggers, RLS y políticas
+  \i database/create_all_tables.sql
+
+  -- 2) Datos de ejemplo (opcional)
+  \i database/insert_sample_data.sql
+  ```
+  Notas:
+  - El script `create_all_tables.sql` crea todo el esquema (tablas, índices), funciones (`is_admin()`, `set_created_by()`, `set_updated_at()`), triggers, activa RLS y define políticas por tabla.
+  - El script `insert_sample_data.sql` carga usuarios, proveedores, compradores, animales, compras/ventas, facturas y notificaciones de ejemplo.
 
 ### Comandos de Desarrollo
 
@@ -81,7 +85,7 @@ npm run build
 - **Iconografía**: Lucide React
 - **Estado**: Zustand
 - **Backend**: Supabase (PostgreSQL + Auth + Storage + Realtime)
-- **PWA**: Vite PWA Plugin
+- **PWA**: Service Worker custom + Manifest (instalable/offline/push)
 - **Build**: Vite + TypeScript
 
 ## 🎨 Diseño Rural
@@ -115,6 +119,8 @@ npm run build
 - **detalle_venta**: Detalle de animales vendidos
 - **eventos_sanitarios**: Historial sanitario
 - **usuarios**: Gestión de usuarios y roles
+- **facturas**: Facturación (A/B/C/E) vinculada a compras/ventas
+- **configuraciones** y **configuracion_facturacion**
 
 ### Relaciones Clave
 - Compras → Animales (1:N)
@@ -137,13 +143,17 @@ npm run build
 - **Sistema de Autenticación**: Login, protección de rutas, gestión de usuarios
 - **Tema Rural**: Diseño completo con paleta de colores y animaciones
 
-### 🔄 En Desarrollo
-- **Dashboard**: KPIs y métricas visuales
-- **Gestión de Animales**: Stock, filtros, historial
-- **Compras**: Wizard de compra, carga individual/lote
-- **Ventas**: Selección de animales, tipos de venta
-- **Sanidad**: Eventos sanitarios, medicamentos
-- **Reportes**: Exportación Excel/PDF
+### ✅ Facturación
+- Generación de facturas desde Compras/Ventas
+- Numeración automática por tipo (A/B/C/E) con `configuracion_facturacion`
+- PDF (descarga y previsualización en modal)
+- Uso de datos de empresa desde Configuración
+
+### ✅ PWA (Progresive Web App)
+- Instalación como app nativa (Banner de instalación)
+- Funcionamiento Offline (Service Worker: cache first/network first/stale-while-revalidate)
+- Notificaciones push (permiso y envío desde UI)
+- Estado de conexión y sincronización en segundo plano
 
 ## 🛠️ Instalación y Desarrollo
 
@@ -193,6 +203,20 @@ src/
 ├── utils/           # Utilidades y Supabase client
 └── hooks/           # Custom hooks (useConfirm, useNotifications)
 ```
+
+## 🗄️ Base de datos: Seguridad y Políticas (RLS)
+
+- RLS activado en todas las tablas
+- Funciones:
+  - `is_admin()` (SECURITY DEFINER) para políticas
+  - `set_created_by()` y `set_updated_at()` via triggers
+- Políticas por tabla (SELECT/INSERT/UPDATE/DELETE):
+  - Lectura: usuarios autenticados
+  - Escritura: dueño del registro (`created_by = auth.uid()`) o administrador
+  - Tablas maestras (proveedores/compradores/transportadores/configuraciones): escritura solo admin
+  - Detalles (detalle_compra/venta): permiso por pertenencia a la cabecera
+
+> Todo lo anterior está incluido y documentado en `database/create_all_tables.sql`.
 
 ## 🔄 Progreso del Desarrollo
 
@@ -352,7 +376,7 @@ dist/assets/
 
 ## 🤝 Contribución
 
-Este es un proyecto específico para Gutiérrez Hnos. Para contribuir:
+Este es un proyecto específico para Familia Mercado. Para contribuir:
 
 1. Fork del repositorio
 2. Crear rama de feature (`git checkout -b feature/nueva-funcionalidad`)
@@ -362,33 +386,8 @@ Este es un proyecto específico para Gutiérrez Hnos. Para contribuir:
 
 ## 📄 Licencia
 
-Proyecto privado para uso exclusivo de Gutiérrez Hnos.
+Proyecto privado para uso exclusivo de Familia Mercado.
 
 ---
 
-**Desarrollado con ❤️ para la gestión ganadera moderna** 🌾
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
 **Desarrollado con ❤️ para la gestión ganadera moderna** 🌾
